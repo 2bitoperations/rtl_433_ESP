@@ -111,6 +111,7 @@
     DECL(generic_motion)             \
     DECL(generic_remote)             \
     DECL(generic_temperature_sensor) \
+    DECL(generic_soil_moisture)      \
     DECL(geo_minim)                  \
     DECL(govee)                      \
     DECL(govee_h5054)                \
@@ -285,7 +286,7 @@
     DECL(x10_sec)                    \
     DECL(yale_hsa)                   \
     /* Add new decoders here. */
-#  define NUMOF_OOK_DEVICES 170
+#  define NUMOF_OOK_DEVICES 171
 #  define NUMOF_FSK_DEVICES 105
 /* Add new decoders here. */
 #else
