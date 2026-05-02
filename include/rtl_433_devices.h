@@ -290,17 +290,23 @@
 #  define NUMOF_FSK_DEVICES 105
 /* Add new decoders here. */
 #else
+#  if OOK_MODULATION
 /**
- * Subset of devices that I have access to and have tested with
+ * OOK device subset — add personal OOK decoders here.
  */
-#  define DEVICES         \
-    DECL(acurite_986)     \
-    DECL(skylink_motion)  \
-    DECL(prologue)        \
-    DECL(philips_aj3650)  \
-    DECL(fineoffset_WH51) \
-/* Add new personal decoders here. */
-#  define NUMOFDEVICES 5
+#    define DEVICES              \
+    DECL(generic_soil_moisture)  \
+    /* Add OOK personal decoders here. */
+#    define NUMOFDEVICES 1
+#  else
+/**
+ * FSK device subset — add personal FSK decoders here.
+ */
+#    define DEVICES          \
+    DECL(fineoffset_WH51)    \
+    /* Add FSK personal decoders here. */
+#    define NUMOFDEVICES 1
+#  endif
 #endif
 
 #define DECL(name) extern r_device name;

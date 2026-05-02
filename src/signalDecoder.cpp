@@ -68,11 +68,15 @@ void rtlSetup() {
                 ESP.getFreeHeap());
 #endif
     cfg->conversion_mode = CONVERT_SI; // Default all output to Celsius
+#ifndef MY_DEVICES
     if (rtl_433_ESP::ookModulation) {
       cfg->num_r_devices = NUMOF_OOK_DEVICES;
     } else {
       cfg->num_r_devices = NUMOF_FSK_DEVICES;
     }
+#else
+    cfg->num_r_devices = NUMOFDEVICES;
+#endif
     cfg->devices = reinterpret_cast<r_device*>(calloc(cfg->num_r_devices, sizeof(r_device)));
     if (!cfg->devices)
       FATAL_CALLOC("cfg->devices");
@@ -368,7 +372,11 @@ void rtlSetup() {
     // end of fragment
 
 #else
-    memcpy(&cfg->devices[0], &lacrosse_tx141x, sizeof(r_device));
+#  if OOK_MODULATION
+    memcpy(&cfg->devices[0], &generic_soil_moisture, sizeof(r_device));
+#  else
+    memcpy(&cfg->devices[0], &fineoffset_WH51, sizeof(r_device));
+#  endif
 #endif
 
 #ifdef RTL_FLEX
